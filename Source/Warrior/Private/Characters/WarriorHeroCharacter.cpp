@@ -11,6 +11,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "WarriorGameplayTags.h"
 #include "AbilitySystem/WarriorAbilitySystemComponent.h"
+#include "Components/Combat/HeroCombatComponent.h"
 #include "Components/Input/WarriorInputComponent.h"
 #include "DataAssets/Input/DataAsset_InputConfig.h"
 #include "DataAssets/StartupData/DataAsset_StartupDataBase.h"
@@ -33,6 +34,8 @@ AWarriorHeroCharacter::AWarriorHeroCharacter()
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 	FollowCamera->bUsePawnControlRotation = false;
 
+	HeroCombatComponent = CreateDefaultSubobject<UHeroCombatComponent>(TEXT("HeroCombatComponent"));
+
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->RotationRate = FRotator(0.f, 500.f, 0.f);
 	GetCharacterMovement()->MaxWalkSpeed = 400.f;
@@ -47,7 +50,7 @@ void AWarriorHeroCharacter::PossessedBy(AController* NewController)
 	{
 		if (UDataAsset_StartupDataBase* LoadedData = CharacterStartupData.LoadSynchronous())
 		{
-			LoadedData->GiveToAbilitySystemComponent(WarriorAbilitySystemComponent);
+			LoadedData->GiveAbilitiesToAbilitySystemComponent(WarriorAbilitySystemComponent);
 		}
 	}
 }
