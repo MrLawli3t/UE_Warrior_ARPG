@@ -3,23 +3,16 @@
 
 #include "Components/Combat/HeroCombatComponent.h"
 
+#include "Items/Weapons/WarriorHeroWeapon.h"
+
 
 UHeroCombatComponent::UHeroCombatComponent()
 {
-	PrimaryComponentTick.bCanEverTick = true;
+	PrimaryComponentTick.bCanEverTick = false;
 }
 
-
-void UHeroCombatComponent::BeginPlay()
+AWarriorHeroWeapon* UHeroCombatComponent::GetHeroCarriedWeaponByTag(const FGameplayTag InWeaponTag) const
 {
-	Super::BeginPlay();
-
-	
-}
-
-
-void UHeroCombatComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	return Cast<AWarriorHeroWeapon>(GetCharacterCarriedWeaponByTag(InWeaponTag));
 }
 

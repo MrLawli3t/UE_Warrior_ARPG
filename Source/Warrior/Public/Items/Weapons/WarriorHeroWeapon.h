@@ -3,7 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayAbilitySpecHandle.h"
 #include "WarriorWeaponBase.h"
+#include "WarriorTypes/WarriorStructTypes.h"
 #include "WarriorHeroWeapon.generated.h"
 
 UCLASS()
@@ -12,14 +14,16 @@ class WARRIOR_API AWarriorHeroWeapon : public AWarriorWeaponBase
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this actor's properties
-	AWarriorHeroWeapon();
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "WeaponData")
+	FWarriorHeroWeaponData HeroWeaponData;
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+private:
+	TArray<FGameplayAbilitySpecHandle> AbilityHandles;
 
 public:
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	UFUNCTION(BlueprintCallable)
+	FORCEINLINE void AssignAbilityHandles(const TArray<FGameplayAbilitySpecHandle>& InAbilityHandles) {AbilityHandles = InAbilityHandles;}
+
+	UFUNCTION(BlueprintPure)
+	FORCEINLINE TArray<FGameplayAbilitySpecHandle> GetAbilityHandles() const {return AbilityHandles;}
 };

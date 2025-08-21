@@ -1,11 +1,11 @@
 ﻿// Lawliet Studios All Rights Reserved
 
 
-#include "AnimInstances/Hero/WarroirHeroAnimInstance.h"
+#include "AnimInstances/Hero/WarriorHeroAnimInstance.h"
 
 #include "Characters/WarriorHeroCharacter.h"
 
-void UWarroirHeroAnimInstance::NativeInitializeAnimation()
+void UWarriorHeroAnimInstance::NativeInitializeAnimation()
 {
 	Super::NativeInitializeAnimation();
 
@@ -15,7 +15,7 @@ void UWarroirHeroAnimInstance::NativeInitializeAnimation()
 	}
 }
 
-void UWarroirHeroAnimInstance::NativeThreadSafeUpdateAnimation(const float DeltaSeconds)
+void UWarriorHeroAnimInstance::NativeThreadSafeUpdateAnimation(const float DeltaSeconds)
 {
 	Super::NativeThreadSafeUpdateAnimation(DeltaSeconds);
 

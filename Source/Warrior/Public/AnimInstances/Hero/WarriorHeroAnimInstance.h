@@ -4,14 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "AnimInstances/WarriorCharacterAnimInstance.h"
-#include "WarroirHeroAnimInstance.generated.h"
+#include "WarriorHeroAnimInstance.generated.h"
 
 class AWarriorHeroCharacter;
 /**
  * 
  */
 UCLASS()
-class WARRIOR_API UWarroirHeroAnimInstance : public UWarriorCharacterAnimInstance
+class WARRIOR_API UWarriorHeroAnimInstance : public UWarriorCharacterAnimInstance
 {
 	GENERATED_BODY()
 public:
