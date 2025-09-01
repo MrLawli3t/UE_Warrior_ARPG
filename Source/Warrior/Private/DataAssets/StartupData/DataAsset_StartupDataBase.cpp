@@ -16,11 +16,10 @@ void UDataAsset_StartupDataBase::GiveAbilitiesToAbilitySystemComponent(UWarriorA
 void UDataAsset_StartupDataBase::GrantAbilities(const TArray<TSubclassOf<UWarriorGameplayAbility>>& InAbilitiesToGive,
 	UWarriorAbilitySystemComponent* InASC, int32 ApplyLevel)
 {
-	if (InAbilitiesToGive.IsEmpty()) return;
-
 	for (const TSubclassOf<UWarriorGameplayAbility>& Ability : InAbilitiesToGive)
 	{
 		if (!Ability) continue;
+		if (InASC->FindAbilitySpecFromClass(Ability)) continue;
 
 		FGameplayAbilitySpec AbilitySpec(Ability);
 		AbilitySpec.SourceObject = InASC->GetAvatarActor();
