@@ -11,6 +11,11 @@ void UDataAsset_StartupDataBase::GiveAbilitiesToAbilitySystemComponent(UWarriorA
 
 	GrantAbilities(StartupAbilities, InASC, ApplyLevel);
 	GrantAbilities(ReactiveAbilities, InASC, ApplyLevel);
+
+	for (const TSubclassOf<UGameplayEffect>& Effect : StartupEffects)
+	{
+		InASC->ApplyGameplayEffectToSelf(Effect.GetDefaultObject(), ApplyLevel, InASC->MakeEffectContext());
+	}
 }
 
 void UDataAsset_StartupDataBase::GrantAbilities(const TArray<TSubclassOf<UWarriorGameplayAbility>>& InAbilitiesToGive,
