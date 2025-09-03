@@ -18,6 +18,8 @@ class WARRIOR_API AWarriorEnemyCharacter : public AWarriorBaseCharacter
 public:
 	AWarriorEnemyCharacter();
 
+	virtual UPawnCombatComponent* GetPawnCombatComponent() override;
+
 protected:
 	//~ Begin APawn interface
 	virtual void PossessedBy(AController* NewController) override;

@@ -22,6 +22,8 @@ class WARRIOR_API AWarriorHeroCharacter : public AWarriorBaseCharacter
 	
 public:
 	AWarriorHeroCharacter();
+
+	virtual UPawnCombatComponent* GetPawnCombatComponent() override;
 	
 protected:
 	//~ Begin APawn interface

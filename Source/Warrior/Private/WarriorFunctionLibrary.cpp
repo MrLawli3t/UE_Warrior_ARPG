@@ -6,6 +6,8 @@
 #include "AbilitySystem/WarriorAbilitySystemComponent.h"
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemGlobals.h"
+#include "Components/Combat/PawnCombatComponent.h"
+#include "Interfaces/PawnCombatInterface.h"
 
 UWarriorAbilitySystemComponent* UWarriorFunctionLibrary::NativeGetWarriorASCFromActor(const AActor* InActor)
 {
@@ -35,14 +37,35 @@ void UWarriorFunctionLibrary::RemoveGameplayTagFromActor(AActor* InActor, FGamep
 	}
 }
 
-bool UWarriorFunctionLibrary::NativeDoesActorHaveTag(AActor* InActor, FGameplayTag Tag)
+bool UWarriorFunctionLibrary::NativeDoesActorHaveTag(AActor* InActor, const FGameplayTag Tag)
 {
-	UWarriorAbilitySystemComponent* WarriorASC = NativeGetWarriorASCFromActor(InActor);
+	const UWarriorAbilitySystemComponent* WarriorASC = NativeGetWarriorASCFromActor(InActor);
 
 	return WarriorASC->HasMatchingGameplayTag(Tag);
 }
 
-void UWarriorFunctionLibrary::BP_DoesActorHaveTag(AActor* InActor, FGameplayTag Tag, bool& OutBool)
+void UWarriorFunctionLibrary::BP_DoesActorHaveTag(AActor* InActor, const FGameplayTag Tag, bool& OutBool)
 {
 	NativeDoesActorHaveTag(InActor, Tag) ? OutBool = true : OutBool = false;
+}
+
+UPawnCombatComponent* UWarriorFunctionLibrary::NativeGetPawnCombatComponent(AActor* InActor)
+{
+	check(InActor);
+
+	if (IPawnCombatInterface* PawnCombatInterface = Cast<IPawnCombatInterface>(InActor))
+	{
+		return PawnCombatInterface->GetPawnCombatComponent();
+	}
+
+	return nullptr;
+}
+
+UPawnCombatComponent* UWarriorFunctionLibrary::BP_GetPawnCombatComponent(AActor* InActor, EWarriorValidType OutValidType)
+{
+	UPawnCombatComponent* PawnCombatComponent = NativeGetPawnCombatComponent(InActor);
+	
+	OutValidType = PawnCombatComponent ? EWarriorValidType::Valid : EWarriorValidType::Invalid;
+	
+	return PawnCombatComponent;
 }

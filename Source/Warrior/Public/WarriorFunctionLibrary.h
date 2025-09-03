@@ -4,8 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
+#include "WarriorTypes/WarriorEnumTypes.h"
 #include "WarriorFunctionLibrary.generated.h"
 
+class UPawnCombatComponent;
 struct FGameplayTag;
 class UWarriorAbilitySystemComponent;
 
@@ -30,4 +32,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Warrior|FunctionLibrary", meta = (DisplayName = "Does Actor Have Tag", ExpandBoolAsExecs = "OutBool"))
 	static void BP_DoesActorHaveTag(AActor* InActor, FGameplayTag Tag, bool& OutBool);
+
+	static UPawnCombatComponent* NativeGetPawnCombatComponent(AActor* InActor);
+
+	UFUNCTION(BlueprintCallable, Category = "Warrior|FunctionLibrary", meta = (DisplayName = "Get Pawn Combat Component", ExpandEnumAsExecs = "OutValidType"))
+	static UPawnCombatComponent* BP_GetPawnCombatComponent(AActor* InActor, EWarriorValidType OutValidType);
 };
