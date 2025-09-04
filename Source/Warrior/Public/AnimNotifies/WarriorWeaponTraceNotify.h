@@ -6,6 +6,7 @@
 #include "Animation/AnimNotifies/AnimNotifyState.h"
 #include "WarriorWeaponTraceNotify.generated.h"
 
+class AWarriorWeaponBase;
 /**
  * 
  */
@@ -16,4 +17,8 @@ class WARRIOR_API UWarriorWeaponTraceNotify : public UAnimNotifyState
 
 public:
 	virtual void NotifyTick(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, float FrameDeltaTime, const FAnimNotifyEventReference& EventReference) override;
+	virtual void NotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, const FAnimNotifyEventReference& EventReference) override;
+
+private:
+	static AWarriorWeaponBase* GetWarriorWeaponFromMesh(const USkeletalMeshComponent* MeshComp);
 };

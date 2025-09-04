@@ -17,12 +17,20 @@ public:
 	// Sets default values for this actor's properties
 	AWarriorWeaponBase();
 
+	void WeaponTrace();
+	void OnWeaponTraceEnd();
+
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapons")
 	UStaticMeshComponent* WeaponMesh = nullptr;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapons")
 	UBoxComponent* WeaponBox = nullptr;
+
+private:
+	FVector PreviousTraceLocation = FVector::ZeroVector;
+
+	TSet<AActor*> HitActors;
 
 public:
 	FORCEINLINE UBoxComponent* GetWeaponBox() const { return WeaponBox; }
