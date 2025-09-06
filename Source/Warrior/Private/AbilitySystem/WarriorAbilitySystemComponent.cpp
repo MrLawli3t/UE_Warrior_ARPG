@@ -3,8 +3,9 @@
 
 #include "AbilitySystem/WarriorAbilitySystemComponent.h"
 
+#include "WarriorDebugHelper.h"
 #include "WarriorTypes/WarriorStructTypes.h"
-#include "AbilitySystem/Abilities/WarriorGameplayAbility.h"
+#include "AbilitySystem/Abilities/WarriorHeroGameplayAbility.h"
 
 void UWarriorAbilitySystemComponent::OnAbilityInputPressed(const FGameplayTag& InInputTag)
 {

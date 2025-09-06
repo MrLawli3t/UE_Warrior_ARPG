@@ -8,6 +8,8 @@
 
 class UBoxComponent;
 
+DECLARE_DELEGATE_OneParam(FTargetHitSignature, AActor* HitActor);
+
 UCLASS()
 class WARRIOR_API AWarriorWeaponBase : public AActor
 {
@@ -19,6 +21,8 @@ public:
 
 	void WeaponTrace();
 	void OnWeaponTraceEnd();
+
+	FTargetHitSignature HitActorDelegate;
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapons")

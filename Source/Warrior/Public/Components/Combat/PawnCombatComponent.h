@@ -28,6 +28,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Warrior|Combat")
 	AWarriorWeaponBase* GetCurrentEquippedWeapon() const;
+
+protected:
+	virtual void OnHitActor(AActor* HitActor);
 	
 private:
 	TMap<FGameplayTag, AWarriorWeaponBase*> CharacterCarriedWeaponMap;

@@ -46,10 +46,12 @@ void AWarriorWeaponBase::WeaponTrace()
 		for (const FHitResult HitResult : HitResults)
 		{
 			AActor* HitActor = HitResult.GetActor();
-			if (!HitActor || HitActors.Contains(HitActor)) continue;
-
-			Debug::Print(HitActor->GetActorLabel());
-			HitActors.Add(HitActor);
+			
+			if (HitActor && !HitActors.Contains(HitActor))
+			{
+				HitActors.Add(HitActor);
+				HitActorDelegate.ExecuteIfBound(HitActor);
+			}
 		}
 	}
 
