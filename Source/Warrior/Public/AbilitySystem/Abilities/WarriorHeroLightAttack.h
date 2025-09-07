@@ -3,35 +3,19 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "WarriorHeroGameplayAbility.h"
+#include "WarriorHeroMeleeAttack.h"
 #include "WarriorHeroLightAttack.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class WARRIOR_API UWarriorHeroLightAttack : public UWarriorHeroGameplayAbility
+class WARRIOR_API UWarriorHeroLightAttack : public UWarriorHeroMeleeAttack
 {
 	GENERATED_BODY()
-	
-public:
-	virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
 
 protected:
-	UPROPERTY(EditDefaultsOnly)
-	TArray<UAnimMontage*> AttackMontages;
-	
-private:
-	UFUNCTION()
-	void OnAbilityCompleted();
+	virtual void PostMontageLogic() override;
+	virtual void OnResetComboTimer() override;
 
-	UFUNCTION()
-	void OnAbilityCancelled();
-
-	void OnResetComboTimer();
-
-	FTimerDelegate ResetComboTimerDelegate;
-	
-	FTimerHandle ResetComboTimer;
-	int ComboIndex;
 };

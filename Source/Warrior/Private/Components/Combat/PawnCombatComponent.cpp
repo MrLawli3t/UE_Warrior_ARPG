@@ -4,7 +4,6 @@
 #include "Components/Combat/PawnCombatComponent.h"
 
 #include "AbilitySystemBlueprintLibrary.h"
-#include "WarriorDebugHelper.h"
 #include "WarriorGameplayTags.h"
 #include "Items/Weapons/WarriorWeaponBase.h"
 
@@ -51,7 +50,7 @@ void UPawnCombatComponent::OnHitActor(AActor* HitActor)
 	HitEventPayload.Instigator = GetOwningPawn();
 	
 	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(
-		HitActor,
+		GetOwningPawn(),
 		WarriorGameplayTags::Shared_Event_MeleeHit,
 		HitEventPayload
 	);
