@@ -9,6 +9,7 @@
 #include "Characters/WarriorHeroCharacter.h"
 #include "Abilities/Tasks/AbilityTask_PlayMontageAndWait.h"
 #include "Abilities/Tasks/AbilityTask_WaitGameplayEvent.h"
+#include "Components/Combat/HeroCombatComponent.h"
 
 UWarriorHeroMeleeAttack::UWarriorHeroMeleeAttack()
 {

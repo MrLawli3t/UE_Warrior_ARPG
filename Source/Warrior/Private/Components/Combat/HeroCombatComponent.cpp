@@ -16,3 +16,18 @@ AWarriorHeroWeapon* UHeroCombatComponent::GetHeroCarriedWeaponByTag(const FGamep
 	return Cast<AWarriorHeroWeapon>(GetCharacterCarriedWeaponByTag(InWeaponTag));
 }
 
+AWarriorHeroWeapon* UHeroCombatComponent::GetHeroCurrentEquippedWeapon() const
+{
+	return Cast<AWarriorHeroWeapon>(GetCurrentEquippedWeapon());
+}
+
+float UHeroCombatComponent::GetEquippedWeaponScaledDamage(const float Level) const
+{
+	if (const AWarriorHeroWeapon* Weapon = GetHeroCurrentEquippedWeapon())
+	{
+		return Weapon->HeroWeaponData.WeaponBaseDamage.GetValueAtLevel(Level);
+	}
+
+	return 0.0f;
+}
+

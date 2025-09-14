@@ -17,5 +17,6 @@ class WARRIOR_API UWarriorHeroLightAttack : public UWarriorHeroMeleeAttack
 protected:
 	virtual void PostMontageLogic() override;
 	virtual void OnResetComboTimer() override;
+	virtual void OnMeleeHitEvent(FGameplayEventData Payload) override;
 
 };

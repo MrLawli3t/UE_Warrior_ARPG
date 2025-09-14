@@ -36,4 +36,6 @@ protected:
 
 	UFUNCTION(BlueprintPure, Category = "Warrior|Ability")
 	UWarriorAbilitySystemComponent* GetWarriorAbilitySystemComponentFromActorInfo() const;
+
+	FActiveGameplayEffectHandle ApplyEffectSpecHandleToTarget(const AActor* TargetActor, const FGameplayEffectSpecHandle& EffectSpecHandle) const;
 };

@@ -18,10 +18,7 @@ public:
 	UWarriorHeroMeleeAttack();
 	virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
 
-protected:
-	UPROPERTY(EditDefaultsOnly)
-	TArray<UAnimMontage*> AttackMontages;
-	
+protected:	
 	/*
 1. Sets instancing policy   
 2. Removes Player_Status_JumpToFinisher
@@ -35,6 +32,12 @@ protected:
 
 	virtual void OnResetComboTimer();
 
+	UPROPERTY(EditDefaultsOnly)
+	TArray<UAnimMontage*> AttackMontages;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UGameplayEffect> DamageEffectClass;
+
 	int CurrentComboIndex = 0;
 	int UsedComboIndex = 0;
 	
@@ -46,7 +49,7 @@ private:
 	void OnAbilityCancelled();
 
 	UFUNCTION()
-	void OnMeleeHitEvent(FGameplayEventData Payload);
+	virtual void OnMeleeHitEvent(FGameplayEventData Payload);
 
 	FTimerDelegate ResetComboTimerDelegate;
 	
